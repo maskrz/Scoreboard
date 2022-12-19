@@ -41,9 +41,18 @@ public class ScoreboardTest {
         assertEquals(gameExists, foundGame != null);
     }
 
+    @Test
+    void shouldFindExistingGameById() {
+        Game g1 = new Game("Poland", "USA");
+        scoreboard.addGame(g1);
+        assertNull(scoreboard.findExistingGame(2));
+        assertEquals(g1, scoreboard.findExistingGame(1));
+    }
+
     private static Stream<Arguments> gamesProvider() {
         return Stream.of(
                 Arguments.of(new Game("Poland", "USA"), true),
+                Arguments.of(new Game("Poland", "France"), false),
                 Arguments.of(new Game("UK", "France"), false)
         );
     }

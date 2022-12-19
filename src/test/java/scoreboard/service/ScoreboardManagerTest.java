@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 
 public class ScoreboardManagerTest {
 
-    ScoreboardManager scoreboardManager;
+    private ScoreboardManager scoreboardManager;
 
     @BeforeEach
     void setUp() {

@@ -29,4 +29,13 @@ public class Scoreboard {
     public Game findExistingGame(Game game) {
         return games.stream().filter(g -> g.getAwayTeam().equals(game.getAwayTeam()) && g.getHomeTeam().equals(game.getHomeTeam())).findFirst().orElse(null);
     }
+
+    public Game findExistingGame(int gameId) {
+        return games.stream().filter(g -> g.getId() == gameId).findFirst().orElse(null);
+    }
+
+    public boolean removeGame(Game game) {
+        games.remove(game);
+        return true;
+    }
 }

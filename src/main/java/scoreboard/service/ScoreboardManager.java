@@ -5,6 +5,8 @@ import scoreboard.exception.BusinessException;
 import scoreboard.model.Game;
 import scoreboard.model.Scoreboard;
 
+import java.util.Optional;
+
 public class ScoreboardManager {
 
     // setter for junit mock. Normally DI would do the job.
@@ -23,7 +25,13 @@ public class ScoreboardManager {
         return scoreboard.addGame(game);
     }
 
-    public void finishGame(Game gameDto){}
+    public Optional<Game> getGameById(int gameId) {
+        return Optional.ofNullable(scoreboard.findExistingGame(gameId));
+    }
+
+    public boolean finishGame(Game game){
+        return scoreboard.removeGame(game);
+    }
 
     public void updateScore(Game gameDto){}
 
