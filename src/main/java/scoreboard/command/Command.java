@@ -1,10 +1,14 @@
 package scoreboard.command;
 
+import scoreboard.service.ScoreboardService;
+
 public abstract class Command {
 
-    public String execute(){
+    protected final String commandPartsSplitter = "|";
+
+    public String execute(ScoreboardService scoreboardService) {
         validate();
-        executeCommand();
+        executeCommand(scoreboardService);
         return getOutput();
     }
 
@@ -12,9 +16,13 @@ public abstract class Command {
         // nothing, just do not throw exception
     }
 
-    protected abstract void executeCommand();
+    protected abstract void executeCommand(ScoreboardService scoreboardService);
 
-    protected abstract String getOutput();
+    protected String getOutput() {
+        return "Command executed";
+    }
+
+    ;
 
 
 }

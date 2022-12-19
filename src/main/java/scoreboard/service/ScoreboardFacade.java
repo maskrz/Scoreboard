@@ -4,5 +4,14 @@ import scoreboard.command.Command;
 
 public class ScoreboardFacade {
 
-    public void executeCommand(Command command) {}
+    ScoreboardService scoreboardService;
+
+    public ScoreboardFacade() {
+        // normally DI framework would do the job
+        this.scoreboardService = new ScoreboardService();
+    }
+
+    public String executeCommand(Command command) {
+        return command.execute(scoreboardService);
+    }
 }
