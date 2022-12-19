@@ -22,8 +22,8 @@ public class StartGameCommand extends Command {
         if (commandParts.length < 3) {
             throw new InvalidCommandException("start command -> expected 3 arguments");
         }
-        this.homeTeam = commandParts[1];
-        this.awayTeam = commandParts[2];
+        this.homeTeam = commandParts[1].trim();
+        this.awayTeam = commandParts[2].trim();
         if (StringUtils.isBlank(homeTeam) || StringUtils.isBlank(awayTeam)) {
             throw new InvalidCommandException("start command -> team name cannot be blank");
         }
