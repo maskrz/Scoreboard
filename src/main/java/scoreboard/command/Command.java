@@ -4,7 +4,7 @@ import scoreboard.service.ScoreboardService;
 
 public abstract class Command {
 
-    protected final String commandPartsSplitter = "|";
+    protected final String commandPartsSplitter = "\\|";
 
     public String execute(ScoreboardService scoreboardService) {
         validate();
@@ -21,8 +21,6 @@ public abstract class Command {
     protected String getOutput() {
         return "Command executed";
     }
-
-    ;
 
 
 }

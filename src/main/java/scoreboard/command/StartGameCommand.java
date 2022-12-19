@@ -1,12 +1,15 @@
 package scoreboard.command;
 
 import scoreboard.exception.InvalidCommandException;
-import scoreboard.model.Game;
 import scoreboard.service.ScoreboardService;
+import scoreboard.utils.StringUtils;
 
 public class StartGameCommand extends Command {
 
-    private String command = "";
+    private String command;
+    private String homeTeam;
+    private String awayTeam;
+    private String resultId;
 
     public StartGameCommand(String command) {
         super();
@@ -19,16 +22,21 @@ public class StartGameCommand extends Command {
         if (commandParts.length < 3) {
             throw new InvalidCommandException("start command -> expected 3 arguments");
         }
+        this.homeTeam = commandParts[1];
+        this.awayTeam = commandParts[2];
+        if (StringUtils.isBlank(homeTeam) || StringUtils.isBlank(awayTeam)) {
+            throw new InvalidCommandException("start command -> team name cannot be blank");
+        }
     }
 
 
     @Override
     protected void executeCommand(ScoreboardService scoreboardService) {
-        Game game = new Game();
+        this.resultId = scoreboardService.startNewGame(this.homeTeam, this.awayTeam);
     }
 
     @Override
     protected String getOutput() {
-        return null;
+        return "Game " + this.homeTeam + " - " + this.awayTeam + " started, id: " + resultId;
     }
 }
