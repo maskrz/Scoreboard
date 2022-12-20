@@ -37,4 +37,9 @@ public class CommandFactoryTest {
     void shouldCreateUpdateScoreCommand() {
         assertTrue(CommandFactory.createCommand("uPDate") instanceof UpdateScoreCommand);
     }
+
+    @Test
+    void shouldCreateSummaryCommand() {
+        assertTrue(CommandFactory.createCommand("summaryAAAAA") instanceof SummaryCommand);
+    }
 }

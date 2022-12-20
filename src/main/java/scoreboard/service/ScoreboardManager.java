@@ -6,6 +6,7 @@ import scoreboard.model.Game;
 import scoreboard.model.Scoreboard;
 import scoreboard.utils.DateTimeUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ScoreboardManager {
@@ -38,9 +39,14 @@ public class ScoreboardManager {
         game.setHomeScore(homeScore);
         game.setAwayScore(awayScore);
         game.setUpdated(DateTimeUtils.getCurrentDateTime());
+        scoreboard.updateScore(game);
         return true;
     }
 
-    public void getSummary() {
+    public List<Game> getSummary() {
+        if (!scoreboard.isSorted()) {
+            scoreboard.sort();
+        }
+        return scoreboard.getAll();
     }
 }

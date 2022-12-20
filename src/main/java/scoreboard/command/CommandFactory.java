@@ -7,6 +7,7 @@ public class CommandFactory {
     private static final String START_COMMAND_TEXT = "start";
     private static final String FINISH_COMMAND_TEXT = "finish";
     private static final String UPDATE_COMMAND_TEXT = "update";
+    private static final String SUMMARY_COMMAND_TEXT = "summary";
     private static final TerminateCommand TERMINATE_COMMAND = new TerminateCommand();
     private static final UnknownCommand UNKNOWN_COMMAND = new UnknownCommand();
 
@@ -26,6 +27,9 @@ public class CommandFactory {
             }
             if (command.toLowerCase().startsWith(UPDATE_COMMAND_TEXT)) {
                 return new UpdateScoreCommand(command);
+            }
+            if (command.toLowerCase().startsWith(SUMMARY_COMMAND_TEXT)) {
+                return new SummaryCommand();
             }
         }
         return UNKNOWN_COMMAND;

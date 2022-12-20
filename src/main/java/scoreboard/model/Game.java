@@ -10,7 +10,15 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Game {
+public class Game implements Comparable<Game> {
+
+    private Integer id;
+    private String homeTeam;
+    private String awayTeam;
+    private Integer homeScore;
+    private Integer awayScore;
+    private LocalDateTime created;
+    private LocalDateTime updated;
 
     public Game(String homeTeam, String awayTeam) {
         this.homeTeam = homeTeam;
@@ -20,11 +28,9 @@ public class Game {
         this.created = DateTimeUtils.getCurrentDateTime();
     }
 
-    private Integer id;
-    private String homeTeam;
-    private String awayTeam;
-    private Integer homeScore;
-    private Integer awayScore;
-    private LocalDateTime created;
-    private LocalDateTime updated;
+    @Override
+    public int compareTo(Game other) {
+        int diff = other.getHomeScore() + other.getAwayScore() - homeScore - awayScore;
+        return diff != 0 ? diff : other.getCreated().compareTo(created);
+    }
 }

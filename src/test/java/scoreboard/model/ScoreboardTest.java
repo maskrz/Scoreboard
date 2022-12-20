@@ -6,6 +6,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,6 +50,37 @@ public class ScoreboardTest {
         scoreboard.addGame(g1);
         assertNull(scoreboard.findExistingGame(2));
         assertEquals(g1, scoreboard.findExistingGame(1));
+    }
+
+    @Test
+    void shouldSortGames() {
+        // given
+        Game g1 = prepareGame("a", "b", 1, 1, 0);
+        Game g2 = prepareGame("c", "d", 2, 5, 1);
+        Game g3 = prepareGame("e", "f", 0, 0, 2);
+        Game g4 = prepareGame("g", "h", 5, 2, 3);
+        Game g5 = prepareGame("i", "j", 1, 1, 4);
+        List<Game> games = Arrays.asList(g1, g2, g3, g4, g5);
+        scoreboard.getGames().addAll(games);
+
+        // when
+        scoreboard.sort();
+
+        // then
+        assertEquals(g4, scoreboard.getAll().get(0));
+        assertEquals(g2, scoreboard.getAll().get(1));
+        assertEquals(g5, scoreboard.getAll().get(2));
+        assertEquals(g1, scoreboard.getAll().get(3));
+        assertEquals(g3, scoreboard.getAll().get(4));
+
+    }
+
+    private Game prepareGame(String homeName, String awayName, int homeScore, int awayScore, int offset) {
+        Game game = new Game(homeName, awayName);
+        game.setHomeScore(homeScore);
+        game.setAwayScore(awayScore);
+        game.setCreated(LocalDateTime.now().plusSeconds(offset));
+        return game;
     }
 
     private static Stream<Arguments> gamesProvider() {

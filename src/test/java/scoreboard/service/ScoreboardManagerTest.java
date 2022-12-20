@@ -9,7 +9,7 @@ import scoreboard.model.Scoreboard;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ScoreboardManagerTest {
 
@@ -51,6 +51,8 @@ public class ScoreboardManagerTest {
     @Test
     void shouldUpdateGame() {
         // given
+        Scoreboard scoreboard = Mockito.mock(Scoreboard.class);
+        scoreboardManager.setScoreboard(scoreboard);
         Game game = new Game("UK", "USA");
 
         // when
@@ -60,5 +62,6 @@ public class ScoreboardManagerTest {
         assertNotNull(game.getUpdated());
         assertEquals(1, game.getHomeScore());
         assertEquals(3, game.getAwayScore());
+        verify(scoreboard, times(1)).updateScore(any());
     }
 }

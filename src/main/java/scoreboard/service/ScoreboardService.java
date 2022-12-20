@@ -3,6 +3,7 @@ package scoreboard.service;
 import lombok.Setter;
 import scoreboard.model.Game;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ScoreboardService {
@@ -32,5 +33,9 @@ public class ScoreboardService {
             return scoreboardManager.updateScore(existingGame.get(), homeScore, awayScore);
         }
         return false;
+    }
+
+    public List<Game> getSummary() {
+        return scoreboardManager.getSummary();
     }
 }

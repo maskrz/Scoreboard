@@ -38,4 +38,18 @@ public class Scoreboard {
         games.remove(game);
         return true;
     }
+
+    public void updateScore(Game game) {
+        // nothing just mark scoreboard unsorted
+        this.isSorted = false;
+    }
+
+    public void sort() {
+        games.sort(Game::compareTo);
+        this.isSorted = true;
+    }
+
+    public List<Game> getAll() {
+        return this.games;
+    }
 }
