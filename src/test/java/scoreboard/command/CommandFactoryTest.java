@@ -22,4 +22,19 @@ public class CommandFactoryTest {
     void shouldCreateTerminateCommand() {
         assertTrue(CommandFactory.createCommand("TeRmInatE") instanceof TerminateCommand);
     }
+
+    @Test
+    void shouldCreateStartGameCommand() {
+        assertTrue(CommandFactory.createCommand("sTarT") instanceof StartGameCommand);
+    }
+
+    @Test
+    void shouldCreateFinishGameCommand() {
+        assertTrue(CommandFactory.createCommand("Finish") instanceof FinishGameCommand);
+    }
+
+    @Test
+    void shouldCreateUpdateScoreCommand() {
+        assertTrue(CommandFactory.createCommand("uPDate") instanceof UpdateScoreCommand);
+    }
 }

@@ -7,8 +7,7 @@ import scoreboard.exception.BusinessException;
 import scoreboard.model.Game;
 import scoreboard.model.Scoreboard;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -47,5 +46,19 @@ public class ScoreboardManagerTest {
 
         // then
         assertEquals(10, scoreboardManager.addGame(new Game("", "")));
+    }
+
+    @Test
+    void shouldUpdateGame() {
+        // given
+        Game game = new Game("UK", "USA");
+
+        // when
+        scoreboardManager.updateScore(game, 1, 3);
+
+        // then
+        assertNotNull(game.getUpdated());
+        assertEquals(1, game.getHomeScore());
+        assertEquals(3, game.getAwayScore());
     }
 }

@@ -29,7 +29,6 @@ public class StartGameCommand extends Command {
         }
     }
 
-
     @Override
     protected void executeCommand(ScoreboardService scoreboardService) {
         this.resultId = scoreboardService.startNewGame(this.homeTeam, this.awayTeam);

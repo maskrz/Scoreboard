@@ -25,4 +25,12 @@ public class ScoreboardService {
         }
         return false;
     }
+
+    public boolean updateScore(int gameId, int homeScore, int awayScore) {
+        Optional<Game> existingGame = scoreboardManager.getGameById(gameId);
+        if (existingGame.isPresent()) {
+            return scoreboardManager.updateScore(existingGame.get(), homeScore, awayScore);
+        }
+        return false;
+    }
 }

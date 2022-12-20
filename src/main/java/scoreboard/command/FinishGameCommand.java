@@ -2,7 +2,6 @@ package scoreboard.command;
 
 import scoreboard.exception.InvalidCommandException;
 import scoreboard.service.ScoreboardService;
-import scoreboard.utils.StringUtils;
 
 public class FinishGameCommand extends Command {
 
@@ -27,7 +26,6 @@ public class FinishGameCommand extends Command {
             throw new InvalidCommandException("finish command -> id must be a number");
         }
     }
-
 
     @Override
     protected void executeCommand(ScoreboardService scoreboardService) {

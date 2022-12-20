@@ -4,6 +4,7 @@ import lombok.Setter;
 import scoreboard.exception.BusinessException;
 import scoreboard.model.Game;
 import scoreboard.model.Scoreboard;
+import scoreboard.utils.DateTimeUtils;
 
 import java.util.Optional;
 
@@ -29,11 +30,17 @@ public class ScoreboardManager {
         return Optional.ofNullable(scoreboard.findExistingGame(gameId));
     }
 
-    public boolean finishGame(Game game){
+    public boolean finishGame(Game game) {
         return scoreboard.removeGame(game);
     }
 
-    public void updateScore(Game gameDto){}
+    public boolean updateScore(Game game, int homeScore, int awayScore) {
+        game.setHomeScore(homeScore);
+        game.setAwayScore(awayScore);
+        game.setUpdated(DateTimeUtils.getCurrentDateTime());
+        return true;
+    }
 
-    public void getSummary(){} {}
+    public void getSummary() {
+    }
 }
