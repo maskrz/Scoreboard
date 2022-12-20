@@ -27,7 +27,11 @@ public class Scoreboard {
     }
 
     public Game findExistingGame(Game game) {
-        return games.stream().filter(g -> g.getAwayTeam().equals(game.getAwayTeam()) && g.getHomeTeam().equals(game.getHomeTeam())).findFirst().orElse(null);
+        return games.stream()
+                .filter(g ->
+                        (g.getAwayTeam().equals(game.getAwayTeam()) && g.getHomeTeam().equals(game.getHomeTeam()))
+                || (g.getAwayTeam().equals(game.getHomeTeam()) && g.getHomeTeam().equals(game.getAwayTeam())))
+                .findFirst().orElse(null);
     }
 
     public Game findExistingGame(int gameId) {

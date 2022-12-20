@@ -87,6 +87,7 @@ public class ScoreboardTest {
         return Stream.of(
                 Arguments.of(new Game("Poland", "USA"), true),
                 Arguments.of(new Game("Poland", "France"), false),
+                Arguments.of(new Game("USA", "Poland"), true),
                 Arguments.of(new Game("UK", "France"), false)
         );
     }
