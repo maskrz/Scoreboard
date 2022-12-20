@@ -2,7 +2,6 @@ package scoreboard.command;
 
 import scoreboard.exception.InvalidCommandException;
 import scoreboard.service.ScoreboardService;
-import scoreboard.utils.StringUtils;
 
 public class UpdateScoreCommand extends Command {
 

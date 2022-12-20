@@ -28,7 +28,7 @@ public class UpdateScoreCommandTest {
         ArgumentCaptor<Integer> awayTeamScoreCaptor = ArgumentCaptor.forClass(Integer.class);
 
         //when
-        Command command = new UpdateScoreCommand("update|1|2|3");
+        Command command = new UpdateScoreCommand("update|1| 2|3");
         when(scoreboardService.updateScore(anyInt(), anyInt(), anyInt())).thenReturn(true);
         String result = command.execute(scoreboardService);
 

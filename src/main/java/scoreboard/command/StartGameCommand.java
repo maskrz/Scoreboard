@@ -1,5 +1,6 @@
 package scoreboard.command;
 
+import scoreboard.exception.BusinessException;
 import scoreboard.exception.InvalidCommandException;
 import scoreboard.service.ScoreboardService;
 import scoreboard.utils.StringUtils;
@@ -26,6 +27,9 @@ public class StartGameCommand extends Command {
         this.awayTeam = commandParts[2].trim();
         if (StringUtils.isBlank(homeTeam) || StringUtils.isBlank(awayTeam)) {
             throw new InvalidCommandException("start command -> team name cannot be blank");
+        }
+        if (homeTeam.equals(awayTeam)) {
+            throw new InvalidCommandException("Cannot start game against same team");
         }
     }
 

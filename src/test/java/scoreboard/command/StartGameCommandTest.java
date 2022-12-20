@@ -17,6 +17,7 @@ public class StartGameCommandTest {
         assertThrows(InvalidCommandException.class, () -> new StartGameCommand("start|poland usa").execute(new ScoreboardService()));
         assertThrows(InvalidCommandException.class, () -> new StartGameCommand("start| |usa").execute(new ScoreboardService()));
         assertThrows(InvalidCommandException.class, () -> new StartGameCommand("start|poland|").execute(new ScoreboardService()));
+        assertThrows(InvalidCommandException.class, () -> new StartGameCommand("start|a|a").execute(new ScoreboardService()));
     }
 
     @Test
